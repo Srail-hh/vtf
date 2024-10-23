@@ -84,6 +84,18 @@ for epoch in range(num_epochs):
         best_accuracy = accuracy
         torch.save(model.state_dict(), PATH)
         print(f"Best model saved with accuracy: {best_accuracy:.2f}%")
+       
+    # 每20个epoch保存一次checkpoint
+    if (epoch + 1) % 20 == 0:
+        checkpoint_path = f'checkpoint_epoch_{epoch+1}.pth'
+        torch.save({
+            'epoch': epoch + 1,
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+            'loss': total_loss / len(train_loader),
+            'accuracy': accuracy
+        }, checkpoint_path)
+        print(f"Checkpoint saved at epoch {epoch+1} to {checkpoint_path}")
     
     model.train()  # 切回训练模式
   
