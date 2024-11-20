@@ -12,13 +12,13 @@ transform = None  # You can define your own transformations here if needed
 test_dataset = CustomDataset('data/test', transform=transform)
 test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
 
-PATH='state_dict_model_cat.pth'
-PATH='state_dict_model_conv.pth'
-PATH='state_dict_model_cat_dropout.pth'
+#PATH='state_dict_model_cat.pth'
+#PATH='state_dict_model_conv.pth'
+#PATH='state_dict_model_cat_dropout.pth'
 PATH='state_dict_model_conv_dropout.pth'
 
 # 在测试集上评估模型
-model=MyModel_cat(num_classes=63)
+model=MyModel_conv_dropout(num_classes=63)
 model.load_state_dict(torch.load(PATH))
 model.to(device)
 #载入保存的模型参数
